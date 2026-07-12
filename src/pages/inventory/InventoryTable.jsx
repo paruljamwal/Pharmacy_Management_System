@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { HiOutlineEye, HiOutlinePencilSquare, HiOutlineTrash } from 'react-icons/hi2';
+import { HiOutlineEye, HiOutlinePencilSquare, HiOutlineTrash, HiOutlineBeaker } from 'react-icons/hi2';
 import { Badge, HighlightText, Table } from '../../components/common';
 import { STOCK_STATUS_BADGE } from '../../constants/inventory';
 import { formatCurrency, formatDate } from '../../utils/inventory';
@@ -96,7 +96,8 @@ function InventoryTable({ data, searchQuery = '', searchBy = 'medicineName' }) {
       hoverable
       stickyHeader
       emptyTitle="No medicines found"
-      emptyDescription="Try adjusting your search or filters."
+      emptyDescription="Nothing matches your search. Try another medicine name, code, or clear filters."
+      emptyIcon={<HiOutlineBeaker size={26} />}
     />
   );
 }

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { HiOutlinePlus } from 'react-icons/hi2';
+import { HiOutlinePlus, HiOutlineBeaker } from 'react-icons/hi2';
 import { Button, SearchInput, Select, Table } from '../../components/common';
 import { SEARCH_BY_OPTIONS } from '../../constants/billing';
 import { filterBillingMedicines, formatCurrency } from '../../utils/billing';
@@ -104,7 +104,8 @@ function MedicinePicker({ medicines, onAdd }) {
         hoverable
         stickyHeader
         emptyTitle="No medicines found"
-        emptyDescription="Try a different search term."
+        emptyDescription="No medicine matches that search. Try the name or medicine code."
+        emptyIcon={<HiOutlineBeaker size={26} />}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+import { HiOutlineDocumentText } from 'react-icons/hi2';
 import { Badge, Table } from '../../components/common';
 import { STATUS_BADGE } from '../../constants/sales';
 import { formatCurrency, formatDate } from '../../utils/sales';
@@ -31,11 +32,11 @@ function SalesTable({ data }) {
       className="sales-table"
       columns={columns}
       data={data}
-      striped
       hoverable
       stickyHeader
       emptyTitle="No invoices found"
-      emptyDescription="Try adjusting your search or date filter."
+      emptyDescription="No sales match that search or date. Try another invoice ID."
+      emptyIcon={<HiOutlineDocumentText size={26} />}
     />
   );
 }

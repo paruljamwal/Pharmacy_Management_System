@@ -6,6 +6,7 @@ import {
   HiOutlineEye,
   HiOutlineCheck,
   HiOutlineXMark,
+  HiOutlineClipboardDocumentList,
 } from 'react-icons/hi2';
 import './PrescriptionTable.css';
 
@@ -116,7 +117,8 @@ function PrescriptionTable({
       hoverable
       stickyHeader
       emptyTitle="No prescriptions found"
-      emptyDescription="Try adjusting your search or filters."
+      emptyDescription="No prescriptions match your filters. Try another patient, doctor, or status."
+      emptyIcon={<HiOutlineClipboardDocumentList size={26} />}
     />
   );
 }

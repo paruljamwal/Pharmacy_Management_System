@@ -11,6 +11,7 @@ function Table({
   emptyTitle = 'No data found',
   emptyDescription = 'There is nothing to display yet.',
   emptyAction = null,
+  emptyIcon = null,
   className = '',
   rowKey = 'id',
 }) {
@@ -58,7 +59,12 @@ function Table({
           </tbody>
         </table>
       ) : (
-        <EmptyState title={emptyTitle} description={emptyDescription} action={emptyAction} />
+        <EmptyState
+          title={emptyTitle}
+          description={emptyDescription}
+          action={emptyAction}
+          icon={emptyIcon}
+        />
       )}
     </div>
   );
