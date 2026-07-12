@@ -1,0 +1,29 @@
+.ui-textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background: var(--color-card);
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ui-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.ui-textarea--error {
+  border-color: var(--color-danger);
+}
+
+.ui-textarea:disabled {
+  background: var(--color-disabled-bg);
+  color: var(--color-disabled);
+  cursor: not-allowed;
+}

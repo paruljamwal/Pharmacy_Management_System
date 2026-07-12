@@ -1,0 +1,89 @@
+.rx-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.rx-drawer__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.rx-drawer__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.rx-drawer__section:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.rx-drawer__section-title {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.rx-drawer__row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--space-md);
+  font-size: var(--font-size-sm);
+}
+
+.rx-drawer__label {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.rx-drawer__value {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.rx-drawer__medicines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.rx-drawer__medicines-title {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.rx-drawer__medicine {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+}
+
+.rx-drawer__medicine-name {
+  margin: 0 0 var(--space-md);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.rx-drawer__notes-text {
+  margin: 4px 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .rx-drawer__row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
