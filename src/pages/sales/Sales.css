@@ -1,0 +1,9 @@
+.sales-page {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sales-page .ui-page-header {
+  margin-bottom: var(--space-xl);
+}
