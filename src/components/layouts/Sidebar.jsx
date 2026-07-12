@@ -6,6 +6,7 @@ import {
   HiOutlineReceiptPercent,
   HiOutlineChartBar,
   HiOutlineXMark,
+  HiOutlineBeaker,
 } from 'react-icons/hi2';
 import { NAV_ITEMS } from '../../constants';
 import './Sidebar.css';
@@ -28,7 +29,12 @@ function Sidebar({ isOpen, onClose }) {
       />
       <aside className={`sidebar ${isOpen ? 'is-open' : ''}`}>
         <div className="sidebar__header">
-          <span className="sidebar__brand">Pharmacy</span>
+          <div className="sidebar__brand">
+            <span className="sidebar__brand-mark" aria-hidden="true">
+              <HiOutlineBeaker size={16} />
+            </span>
+            <span className="sidebar__brand-text">Pharmacy</span>
+          </div>
           <button
             type="button"
             className="sidebar__close"

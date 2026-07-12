@@ -25,6 +25,25 @@
 }
 
 .sidebar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.sidebar__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.sidebar__brand-text {
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: -0.02em;
