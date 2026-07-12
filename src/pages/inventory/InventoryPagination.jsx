@@ -18,20 +18,19 @@ function getPageNumbers(currentPage, totalPages) {
 function InventoryPagination({
   page,
   rowsPerPage,
-  totalItems,
+  filteredCount,
+  totalCount,
   onPageChange,
   onRowsPerPageChange,
 }) {
-  const totalPages = Math.max(1, Math.ceil(totalItems / rowsPerPage));
-  const start = totalItems === 0 ? 0 : (page - 1) * rowsPerPage + 1;
-  const end = Math.min(page * rowsPerPage, totalItems);
+  const totalPages = Math.max(1, Math.ceil(filteredCount / rowsPerPage));
   const pages = getPageNumbers(page, totalPages);
 
   return (
     <div className="inventory-pagination">
       <div className="inventory-pagination__meta">
         <span>
-          Showing {start}–{end} of {totalItems} medicines
+          Showing {filteredCount} of {totalCount} medicines
         </span>
         <div className="inventory-pagination__rows">
           <span>Rows Per Page</span>

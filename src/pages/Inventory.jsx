@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { PageHeader } from '../components/layout';
 import { medicines } from '../data/medicines';
+import useDebounce from '../hooks/useDebounce';
 import {
   filterMedicines,
   getInventorySummary,
@@ -13,25 +14,36 @@ import InventoryPagination from './inventory/InventoryPagination';
 import './inventory/Inventory.css';
 
 const INITIAL_FILTERS = {
-  search: '',
   searchBy: 'medicineName',
   category: 'all',
   stockStatus: 'all',
+  expiry: 'all',
 };
 
 function Inventory() {
+  const [searchInput, setSearchInput] = useState('');
   const [filters, setFilters] = useState(INITIAL_FILTERS);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  const debouncedSearch = useDebounce(searchInput, 300);
+
   const summary = useMemo(() => getInventorySummary(medicines), []);
 
   const filteredMedicines = useMemo(
-    () => filterMedicines(medicines, filters),
-    [filters],
+    () =>
+      filterMedicines(medicines, {
+        ...filters,
+        search: debouncedSearch,
+      }),
+    [filters, debouncedSearch],
   );
 
   const totalPages = Math.max(1, Math.ceil(filteredMedicines.length / rowsPerPage));
+
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedSearch, filters]);
 
   useEffect(() => {
     if (page > totalPages) {
@@ -46,10 +58,10 @@ function Inventory() {
 
   const updateFilter = (key, value) => {
     setFilters((current) => ({ ...current, [key]: value }));
-    setPage(1);
   };
 
   const handleReset = () => {
+    setSearchInput('');
     setFilters(INITIAL_FILTERS);
     setPage(1);
   };
@@ -69,23 +81,30 @@ function Inventory() {
       <InventorySummaryCards summary={summary} />
 
       <InventoryToolbar
-        search={filters.search}
+        search={searchInput}
         searchBy={filters.searchBy}
         category={filters.category}
         stockStatus={filters.stockStatus}
-        onSearchChange={(value) => updateFilter('search', value)}
+        expiry={filters.expiry}
+        onSearchChange={setSearchInput}
         onSearchByChange={(value) => updateFilter('searchBy', value)}
         onCategoryChange={(value) => updateFilter('category', value)}
         onStockStatusChange={(value) => updateFilter('stockStatus', value)}
+        onExpiryChange={(value) => updateFilter('expiry', value)}
         onReset={handleReset}
       />
 
-      <InventoryTable data={paginatedMedicines} />
+      <InventoryTable
+        data={paginatedMedicines}
+        searchQuery={debouncedSearch}
+        searchBy={filters.searchBy}
+      />
 
       <InventoryPagination
         page={page}
         rowsPerPage={String(rowsPerPage)}
-        totalItems={filteredMedicines.length}
+        filteredCount={filteredMedicines.length}
+        totalCount={medicines.length}
         onPageChange={setPage}
         onRowsPerPageChange={handleRowsPerPageChange}
       />

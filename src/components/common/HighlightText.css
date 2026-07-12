@@ -1,0 +1,6 @@
+.highlight-text__match {
+  padding: 0 2px;
+  border-radius: 4px;
+  background: rgba(22, 163, 74, 0.2);
+  color: inherit;
+}

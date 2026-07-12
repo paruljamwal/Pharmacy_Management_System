@@ -37,6 +37,12 @@ export const STOCK_STATUS_OPTIONS = [
   { value: STOCK_STATUS.OUT_OF_STOCK, label: STOCK_STATUS.OUT_OF_STOCK },
 ];
 
+export const EXPIRY_OPTIONS = [
+  { value: 'all', label: 'All' },
+  { value: 'expiringSoon', label: 'Expiring Soon' },
+  { value: 'expired', label: 'Expired' },
+];
+
 export const ROWS_PER_PAGE_OPTIONS = [
   { value: '10', label: '10' },
   { value: '20', label: '20' },
@@ -44,4 +50,3 @@ export const ROWS_PER_PAGE_OPTIONS = [
 ];
 
 export const EXPIRING_SOON_DAYS = 30;
-export const LOW_STOCK_THRESHOLD = 20;

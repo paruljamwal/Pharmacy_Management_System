@@ -16,15 +16,36 @@ export function formatDate(dateString) {
   }).format(new Date(dateString));
 }
 
-export function isExpiringSoon(expiryDate, withinDays = EXPIRING_SOON_DAYS, referenceDate = new Date()) {
-  const expiry = new Date(expiryDate);
-  const now = new Date(referenceDate);
-  now.setHours(0, 0, 0, 0);
-  expiry.setHours(0, 0, 0, 0);
+function startOfDay(date) {
+  const next = new Date(date);
+  next.setHours(0, 0, 0, 0);
+  return next;
+}
 
-  const diffMs = expiry.getTime() - now.getTime();
-  const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-  return diffDays >= 0 && diffDays <= withinDays;
+export function getDaysUntilExpiry(expiryDate, referenceDate = new Date()) {
+  const expiry = startOfDay(expiryDate);
+  const now = startOfDay(referenceDate);
+  return Math.ceil((expiry.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+export function isExpired(expiryDate, referenceDate = new Date()) {
+  return getDaysUntilExpiry(expiryDate, referenceDate) < 0;
+}
+
+export function isExpiringSoon(
+  expiryDate,
+  withinDays = EXPIRING_SOON_DAYS,
+  referenceDate = new Date(),
+) {
+  const daysLeft = getDaysUntilExpiry(expiryDate, referenceDate);
+  return daysLeft >= 0 && daysLeft <= withinDays;
+}
+
+export function matchesExpiryFilter(expiryDate, expiryFilter) {
+  if (expiryFilter === 'all') return true;
+  if (expiryFilter === 'expiringSoon') return isExpiringSoon(expiryDate);
+  if (expiryFilter === 'expired') return isExpired(expiryDate);
+  return true;
 }
 
 export function getInventorySummary(items) {
@@ -36,7 +57,10 @@ export function getInventorySummary(items) {
   };
 }
 
-export function filterMedicines(items, { search, searchBy, category, stockStatus }) {
+export function filterMedicines(
+  items,
+  { search = '', searchBy = 'medicineName', category = 'all', stockStatus = 'all', expiry = 'all' },
+) {
   const query = search.trim().toLowerCase();
 
   return items.filter((item) => {
@@ -44,7 +68,9 @@ export function filterMedicines(items, { search, searchBy, category, stockStatus
       !query || String(item[searchBy] ?? '').toLowerCase().includes(query);
     const matchesCategory = category === 'all' || item.category === category;
     const matchesStatus = stockStatus === 'all' || item.stockStatus === stockStatus;
-    return matchesSearch && matchesCategory && matchesStatus;
+    const matchesExpiry = matchesExpiryFilter(item.expiryDate, expiry);
+
+    return matchesSearch && matchesCategory && matchesStatus && matchesExpiry;
   });
 }
 
