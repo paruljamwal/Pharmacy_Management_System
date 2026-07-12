@@ -1,8 +1,18 @@
-import { HiOutlineBars3, HiOutlineMagnifyingGlass, HiOutlineUserCircle } from 'react-icons/hi2';
-import { APP_NAME } from '../../constants';
+import { useLocation } from 'react-router-dom';
+import { HiOutlineBars3, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
+import { NAV_ITEMS } from '../../constants';
 import './Navbar.css';
 
+const SEARCH_SHORTCUT =
+  typeof navigator !== 'undefined' && /Mac|iPhone|iPad/i.test(navigator.platform)
+    ? '⌘K'
+    : 'Ctrl K';
+
 function Navbar({ onMenuClick }) {
+  const { pathname } = useLocation();
+  const currentPage =
+    NAV_ITEMS.find((item) => item.path === pathname)?.label ?? 'Dashboard';
+
   return (
     <header className="navbar">
       <div className="navbar__left">
@@ -12,32 +22,36 @@ function Navbar({ onMenuClick }) {
           onClick={onMenuClick}
           aria-label="Open sidebar"
         >
-          <HiOutlineBars3 size={22} />
+          <HiOutlineBars3 size={20} />
         </button>
-        <div className="navbar__logo" aria-label={APP_NAME}>
-          <span className="navbar__logo-mark">P</span>
-          <span className="navbar__logo-text">Pharmacy</span>
+        <div className="navbar__context">
+          <span className="navbar__context-label">Workspace</span>
+          <span className="navbar__context-divider" aria-hidden="true" />
+          <h1 className="navbar__page">{currentPage}</h1>
         </div>
       </div>
 
-      <div className="navbar__search">
-        <HiOutlineMagnifyingGlass size={18} className="navbar__search-icon" />
+      <div className="navbar__search" title="Search coming soon">
+        <HiOutlineMagnifyingGlass size={16} className="navbar__search-icon" />
         <input
           type="search"
           className="navbar__search-input"
-          placeholder="Search..."
+          placeholder="Search"
           aria-label="Global search"
           disabled
         />
+        <kbd className="navbar__search-kbd">{SEARCH_SHORTCUT}</kbd>
       </div>
 
-      <div className="navbar__profile">
-        <HiOutlineUserCircle size={28} className="navbar__avatar" />
-        <div className="navbar__user">
+      <button type="button" className="navbar__profile" aria-label="User menu">
+        <span className="navbar__avatar" aria-hidden="true">
+          U
+        </span>
+        <span className="navbar__user">
           <span className="navbar__user-name">User</span>
           <span className="navbar__user-role">Staff</span>
-        </div>
-      </div>
+        </span>
+      </button>
     </header>
   );
 }
