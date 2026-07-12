@@ -15,3 +15,5 @@ export const NAV_ITEMS = [
   { label: 'Billing', path: ROUTES.BILLING },
   { label: 'Sales Reports', path: ROUTES.SALES_REPORTS },
 ];
+
+export { BUTTON_VARIANTS, BADGE_VARIANTS, SKELETON_VARIANTS } from './ui';

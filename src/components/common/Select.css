@@ -1,0 +1,47 @@
+@import './Field.css';
+
+.ui-select {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background: var(--color-card);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ui-select:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.ui-select--error {
+  border-color: var(--color-danger);
+}
+
+.ui-select--error:focus-within {
+  box-shadow: 0 0 0 3px var(--color-danger-soft);
+}
+
+.ui-select--disabled {
+  background: var(--color-disabled-bg);
+}
+
+.ui-select__control {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 36px 0 var(--space-md);
+  border: none;
+  outline: none;
+  background: transparent
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")
+    no-repeat right 12px center;
+  appearance: none;
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+}
+
+.ui-select__control:disabled {
+  color: var(--color-disabled);
+  cursor: not-allowed;
+}

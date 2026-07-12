@@ -1,0 +1,77 @@
+@import './Field.css';
+
+.ui-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background: var(--color-card);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ui-input:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.ui-input--error {
+  border-color: var(--color-danger);
+}
+
+.ui-input--error:focus-within {
+  box-shadow: 0 0 0 3px var(--color-danger-soft);
+}
+
+.ui-input--disabled {
+  background: var(--color-disabled-bg);
+}
+
+.ui-input__control {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 var(--space-md);
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+}
+
+.ui-input--left-icon .ui-input__control {
+  padding-left: 40px;
+}
+
+.ui-input--right-icon .ui-input__control {
+  padding-right: 40px;
+}
+
+.ui-input__control::placeholder {
+  color: var(--color-text-muted);
+}
+
+.ui-input__control:disabled {
+  color: var(--color-disabled);
+  cursor: not-allowed;
+}
+
+.ui-input__icon {
+  position: absolute;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.ui-input__icon--left {
+  left: 12px;
+}
+
+.ui-input__icon--right {
+  right: 12px;
+}

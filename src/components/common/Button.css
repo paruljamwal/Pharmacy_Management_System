@@ -1,0 +1,106 @@
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-height: 40px;
+  padding: 0 var(--space-lg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.ui-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ui-btn--full {
+  width: 100%;
+}
+
+.ui-btn__icon,
+.ui-btn__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ui-btn__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ui-btn-spin 0.7s linear infinite;
+}
+
+.ui-btn--primary {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.ui-btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.ui-btn--secondary {
+  background: var(--color-secondary);
+  color: var(--color-text-inverse);
+}
+
+.ui-btn--secondary:hover:not(:disabled) {
+  background: var(--color-secondary-hover);
+}
+
+.ui-btn--success {
+  background: var(--color-success);
+  color: var(--color-text-inverse);
+}
+
+.ui-btn--success:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.ui-btn--danger {
+  background: var(--color-danger);
+  color: var(--color-text-inverse);
+}
+
+.ui-btn--danger:hover:not(:disabled) {
+  background: var(--color-danger-hover);
+}
+
+.ui-btn--outline {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.ui-btn--outline:hover:not(:disabled) {
+  background: var(--color-bg);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.ui-btn--ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+}
+
+.ui-btn--ghost:hover:not(:disabled) {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+@keyframes ui-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

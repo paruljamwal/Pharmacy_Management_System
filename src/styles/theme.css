@@ -1,22 +1,65 @@
 :root {
+  /* Colors */
   --color-bg: #f8fafc;
   --color-card: #ffffff;
   --color-primary: #16a34a;
   --color-primary-hover: #15803d;
+  --color-primary-soft: rgba(22, 163, 74, 0.1);
+  --color-secondary: #475569;
+  --color-secondary-hover: #334155;
+  --color-success: #16a34a;
+  --color-success-soft: rgba(22, 163, 74, 0.12);
+  --color-warning: #d97706;
+  --color-warning-soft: rgba(217, 119, 6, 0.12);
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-danger-soft: rgba(220, 38, 38, 0.12);
+  --color-info: #2563eb;
+  --color-info-soft: rgba(37, 99, 235, 0.12);
+  --color-neutral: #64748b;
+  --color-neutral-soft: rgba(100, 116, 139, 0.12);
   --color-border: #e5e7eb;
+  --color-border-subtle: #f1f5f9;
   --color-text: #1f2937;
   --color-text-muted: #6b7280;
+  --color-text-inverse: #ffffff;
   --color-sidebar: #ffffff;
   --color-navbar: #ffffff;
+  --color-disabled: #94a3b8;
+  --color-disabled-bg: #f1f5f9;
 
+  /* Elevation */
   --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --radius-card: 12px;
-  --radius-md: 8px;
+  --shadow-card: 0 4px 12px rgba(15, 23, 42, 0.04);
 
+  /* Radius */
+  --radius: 14px;
+  --radius-button: 10px;
+  --radius-card: 16px;
+  --radius-input: 10px;
+  --radius-md: 10px;
+  --radius-badge: 999px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+
+  /* Layout */
   --sidebar-width: 260px;
   --navbar-height: 64px;
 
+  /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.8125rem;
+  --font-size-md: 0.875rem;
+  --font-size-base: 0.9375rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
 }
 
 *,
@@ -49,7 +92,10 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
 }
 
@@ -62,7 +108,7 @@ h3 {
 }
 
 .page-title {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   font-weight: 600;
   color: var(--color-text);
 }
