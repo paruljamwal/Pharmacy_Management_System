@@ -1,0 +1,21 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.not-found__text {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.not-found__link {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.not-found__link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
