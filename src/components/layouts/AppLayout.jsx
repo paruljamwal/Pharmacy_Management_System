@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
-import Breadcrumb from '../common/Breadcrumb';
 import './AppLayout.css';
 
 function AppLayout() {
@@ -14,8 +13,7 @@ function AppLayout() {
       <div className="app-layout__main">
         <Navbar onMenuClick={() => setSidebarOpen(true)} />
         <main className="app-layout__content">
-          <Breadcrumb />
-          <div className="app-layout__page card">
+          <div className="app-layout__page">
             <Outlet />
           </div>
         </main>

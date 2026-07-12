@@ -5,12 +5,10 @@ import useDebounce from '../hooks/useDebounce';
 import { STOCK_ALERT_FILTERS, STOCK_ALERT_TYPES } from '../constants/inventory';
 import {
   filterMedicines,
-  getInventorySummary,
   getStockAlerts,
   paginateItems,
 } from '../utils/inventory';
 import InventoryStockAlerts from './inventory/InventoryStockAlerts';
-import InventorySummaryCards from './inventory/InventorySummaryCards';
 import InventoryToolbar from './inventory/InventoryToolbar';
 import InventoryTable from './inventory/InventoryTable';
 import InventoryPagination from './inventory/InventoryPagination';
@@ -43,8 +41,6 @@ function Inventory() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const debouncedSearch = useDebounce(searchInput, 300);
-
-  const summary = useMemo(() => getInventorySummary(medicines), []);
   const stockAlerts = useMemo(() => getStockAlerts(medicines), []);
   const activeAlert = useMemo(() => getActiveAlert(filters), [filters]);
 
@@ -89,16 +85,11 @@ function Inventory() {
     setPage(1);
   };
 
-  const handleRowsPerPageChange = (value) => {
-    setRowsPerPage(value);
-    setPage(1);
-  };
-
   return (
     <div className="inventory-page">
       <PageHeader
-        title="Medicine Inventory"
-        subtitle="Manage medicines, monitor stock levels and search products."
+        title="Inventory"
+        subtitle="Track stock and find medicines."
       />
 
       <InventoryStockAlerts
@@ -106,8 +97,6 @@ function Inventory() {
         activeAlert={activeAlert}
         onAlertClick={handleAlertClick}
       />
-
-      <InventorySummaryCards summary={summary} />
 
       <InventoryToolbar
         search={searchInput}
@@ -135,7 +124,10 @@ function Inventory() {
         filteredCount={filteredMedicines.length}
         totalCount={medicines.length}
         onPageChange={setPage}
-        onRowsPerPageChange={handleRowsPerPageChange}
+        onRowsPerPageChange={(value) => {
+          setRowsPerPage(value);
+          setPage(1);
+        }}
       />
     </div>
   );

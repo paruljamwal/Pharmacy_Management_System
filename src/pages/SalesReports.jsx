@@ -60,8 +60,8 @@ function SalesReports() {
   return (
     <div className="sales-page">
       <PageHeader
-        title="Sales Report"
-        subtitle="Quick overview of pharmacy sales."
+        title="Sales"
+        subtitle="A quick look at recent invoices."
       />
 
       <SalesSummaryCards summary={summary} />

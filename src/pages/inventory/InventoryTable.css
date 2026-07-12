@@ -1,37 +1,51 @@
 .inventory-table {
-  max-height: 560px;
+  max-height: none;
+}
+
+.inventory-medicine {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.inventory-medicine__name {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.inventory-medicine__meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
 }
 
 .inventory-actions {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
+  justify-content: flex-end;
+  gap: 2px;
 }
 
 .inventory-actions__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   padding: 0;
-  border: 1px solid transparent;
-  border-radius: var(--radius-button);
+  border: none;
+  border-radius: 6px;
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .inventory-actions__btn:hover {
-  background: var(--color-bg);
-  border-color: var(--color-border);
+  background: #f4f4f5;
   color: var(--color-text);
 }
 
 .inventory-actions__btn:last-child:hover {
   color: var(--color-danger);
-  border-color: var(--color-danger-soft);
   background: var(--color-danger-soft);
 }

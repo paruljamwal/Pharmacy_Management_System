@@ -66,7 +66,7 @@ function Billing() {
     <div className="billing-page">
       <PageHeader
         title="Billing"
-        subtitle="Generate customer invoices quickly."
+        subtitle="Create invoices quickly."
       />
 
       <div className="billing-page__grid">

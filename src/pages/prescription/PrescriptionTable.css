@@ -1,47 +1,55 @@
 .rx-table {
-  max-height: 560px;
+  max-height: none;
+}
+
+.rx-patient {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rx-patient__meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
 }
 
 .rx-actions {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
+  justify-content: flex-end;
+  gap: 2px;
 }
 
 .rx-actions__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   padding: 0;
-  border: 1px solid transparent;
-  border-radius: var(--radius-button);
+  border: none;
+  border-radius: 6px;
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
 }
 
 .rx-actions__btn:hover:not(:disabled) {
-  background: var(--color-bg);
-  border-color: var(--color-border);
+  background: #f4f4f5;
   color: var(--color-text);
 }
 
 .rx-actions__btn--success:hover:not(:disabled) {
   color: var(--color-success);
   background: var(--color-success-soft);
-  border-color: var(--color-success-soft);
 }
 
 .rx-actions__btn--danger:hover:not(:disabled) {
   color: var(--color-danger);
   background: var(--color-danger-soft);
-  border-color: var(--color-danger-soft);
 }
 
 .rx-actions__btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }

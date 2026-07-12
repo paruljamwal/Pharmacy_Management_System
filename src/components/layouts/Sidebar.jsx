@@ -7,7 +7,7 @@ import {
   HiOutlineChartBar,
   HiOutlineXMark,
 } from 'react-icons/hi2';
-import { APP_NAME, NAV_ITEMS } from '../../constants';
+import { NAV_ITEMS } from '../../constants';
 import './Sidebar.css';
 
 const ICONS = {
@@ -28,7 +28,7 @@ function Sidebar({ isOpen, onClose }) {
       />
       <aside className={`sidebar ${isOpen ? 'is-open' : ''}`}>
         <div className="sidebar__header">
-          <span className="sidebar__brand">{APP_NAME}</span>
+          <span className="sidebar__brand">Pharmacy</span>
           <button
             type="button"
             className="sidebar__close"

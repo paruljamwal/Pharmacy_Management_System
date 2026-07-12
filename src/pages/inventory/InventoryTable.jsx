@@ -14,7 +14,7 @@ function ActionButton({ label, children }) {
 }
 
 function createColumns(searchQuery, searchBy) {
-  const renderSearchable = (key) => (value) =>
+  const highlight = (key, value) =>
     searchBy === key && searchQuery.trim() ? (
       <HighlightText text={value} query={searchQuery} />
     ) : (
@@ -23,47 +23,48 @@ function createColumns(searchQuery, searchBy) {
 
   return [
     {
-      key: 'medicineCode',
-      header: 'Medicine Code',
-      render: renderSearchable('medicineCode'),
-    },
-    {
       key: 'medicineName',
-      header: 'Medicine Name',
-      render: renderSearchable('medicineName'),
+      header: 'Medicine',
+      render: (value, row) => (
+        <div className="inventory-medicine">
+          <span className="inventory-medicine__name">
+            {highlight('medicineName', value)}
+          </span>
+          <span className="inventory-medicine__meta">
+            {highlight('medicineCode', row.medicineCode)}
+            {searchBy === 'manufacturer' && searchQuery.trim() ? (
+              <> · {highlight('manufacturer', row.manufacturer)}</>
+            ) : null}
+          </span>
+        </div>
+      ),
     },
     { key: 'category', header: 'Category' },
     {
-      key: 'manufacturer',
-      header: 'Manufacturer',
-      render: renderSearchable('manufacturer'),
-    },
-    { key: 'batchNumber', header: 'Batch Number' },
-    {
-      key: 'expiryDate',
-      header: 'Expiry Date',
-      render: (value) => formatDate(value),
+      key: 'quantity',
+      header: 'Stock',
+      align: 'right',
     },
     {
       key: 'unitPrice',
-      header: 'Unit Price',
+      header: 'Price',
       align: 'right',
       render: (value) => formatCurrency(value),
     },
     {
-      key: 'quantity',
-      header: 'Quantity',
-      align: 'right',
+      key: 'expiryDate',
+      header: 'Expiry',
+      render: (value) => formatDate(value),
     },
     {
       key: 'stockStatus',
-      header: 'Stock Status',
+      header: 'Status',
       render: (value) => <Badge variant={STOCK_STATUS_BADGE[value]}>{value}</Badge>,
     },
     {
       key: 'actions',
-      header: 'Actions',
-      align: 'center',
+      header: '',
+      align: 'right',
       render: () => (
         <div className="inventory-actions">
           <ActionButton label="View">
@@ -92,11 +93,10 @@ function InventoryTable({ data, searchQuery = '', searchBy = 'medicineName' }) {
       className="inventory-table"
       columns={columns}
       data={data}
-      striped
       hoverable
       stickyHeader
       emptyTitle="No medicines found"
-      emptyDescription="Try adjusting your search or filters to find medicines."
+      emptyDescription="Try adjusting your search or filters."
     />
   );
 }

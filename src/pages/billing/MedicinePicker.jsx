@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Button, Card, SearchInput, Select, Table } from '../../components/common';
+import { Button, SearchInput, Select, Table } from '../../components/common';
 import { SEARCH_BY_OPTIONS } from '../../constants/billing';
 import { filterBillingMedicines, formatCurrency } from '../../utils/billing';
 import useDebounce from '../../hooks/useDebounce';
@@ -33,19 +33,8 @@ function MedicinePicker({ medicines, onAdd }) {
       ),
     },
     {
-      key: 'unitPrice',
-      header: 'Price',
-      align: 'right',
-      render: (value) => formatCurrency(value),
-    },
-    {
-      key: 'stock',
-      header: 'Stock',
-      align: 'right',
-    },
-    {
       key: 'quantity',
-      header: 'Quantity',
+      header: 'Qty',
       align: 'center',
       render: (_, row) => (
         <input
@@ -60,12 +49,25 @@ function MedicinePicker({ medicines, onAdd }) {
       ),
     },
     {
+      key: 'unitPrice',
+      header: 'Price',
+      align: 'right',
+      render: (value) => formatCurrency(value),
+    },
+    {
+      key: 'total',
+      header: 'Total',
+      align: 'right',
+      render: (_, row) =>
+        formatCurrency(row.unitPrice * (quantities[row.id] ?? 1)),
+    },
+    {
       key: 'action',
-      header: 'Action',
-      align: 'center',
+      header: '',
+      align: 'right',
       render: (_, row) => (
         <Button
-          variant="primary"
+          variant="ghost"
           disabled={row.stock <= 0}
           onClick={() => onAdd(row, quantities[row.id] ?? 1)}
         >
@@ -76,7 +78,7 @@ function MedicinePicker({ medicines, onAdd }) {
   ];
 
   return (
-    <Card className="billing-picker" title="Search Medicine">
+    <div className="billing-picker">
       <div className="billing-picker__toolbar">
         <SearchInput
           placeholder="Search medicine..."
@@ -97,13 +99,12 @@ function MedicinePicker({ medicines, onAdd }) {
         className="billing-picker__table"
         columns={columns}
         data={filtered}
-        striped
         hoverable
         stickyHeader
         emptyTitle="No medicines found"
         emptyDescription="Try a different search term."
       />
-    </Card>
+    </div>
   );
 }
 

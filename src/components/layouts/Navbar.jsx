@@ -16,7 +16,7 @@ function Navbar({ onMenuClick }) {
         </button>
         <div className="navbar__logo" aria-label={APP_NAME}>
           <span className="navbar__logo-mark">P</span>
-          <span className="navbar__logo-text">{APP_NAME}</span>
+          <span className="navbar__logo-text">Pharmacy</span>
         </div>
       </div>
 

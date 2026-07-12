@@ -1,9 +1,8 @@
-.inventory-page {
+.inventory-page,
+.rx-page,
+.sales-page,
+.billing-page {
   display: flex;
   flex-direction: column;
   min-width: 0;
-}
-
-.inventory-page .ui-page-header {
-  margin-bottom: var(--space-xl);
 }

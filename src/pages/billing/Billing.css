@@ -5,12 +5,12 @@
 }
 
 .billing-page .ui-page-header {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
 .billing-page__grid {
   display: grid;
-  grid-template-columns: minmax(0, 65fr) minmax(260px, 35fr);
+  grid-template-columns: minmax(0, 1.85fr) minmax(240px, 0.9fr);
   gap: var(--space-xl);
   align-items: start;
 }

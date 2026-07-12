@@ -1,10 +1,6 @@
 import { useMemo } from 'react';
 import { Badge, HighlightText, Table } from '../../components/common';
-import {
-  PRIORITY_BADGE,
-  PRESCRIPTION_STATUS,
-  STATUS_BADGE,
-} from '../../constants/prescriptions';
+import { PRESCRIPTION_STATUS, STATUS_BADGE } from '../../constants/prescriptions';
 import { formatDate } from '../../utils/prescriptions';
 import {
   HiOutlineEye,
@@ -29,7 +25,7 @@ function ActionButton({ label, onClick, disabled = false, tone = 'default', chil
 }
 
 function createColumns(searchQuery, searchBy, onView, onApprove, onReject) {
-  const renderSearchable = (key) => (value) =>
+  const highlight = (key, value) =>
     searchBy === key && searchQuery.trim() ? (
       <HighlightText text={value} query={searchQuery} />
     ) : (
@@ -40,33 +36,24 @@ function createColumns(searchQuery, searchBy, onView, onApprove, onReject) {
     {
       key: 'prescriptionId',
       header: 'Prescription ID',
-      render: renderSearchable('prescriptionId'),
+      render: (value) => highlight('prescriptionId', value),
     },
     {
       key: 'patientName',
-      header: 'Patient Name',
-      render: renderSearchable('patientName'),
-    },
-    {
-      key: 'doctorName',
-      header: 'Doctor',
-      render: renderSearchable('doctorName'),
+      header: 'Patient',
+      render: (value, row) => (
+        <div className="rx-patient">
+          <span>{highlight('patientName', value)}</span>
+          {searchBy === 'doctorName' && searchQuery.trim() ? (
+            <span className="rx-patient__meta">{highlight('doctorName', row.doctorName)}</span>
+          ) : null}
+        </div>
+      ),
     },
     {
       key: 'date',
-      header: 'Prescription Date',
+      header: 'Date',
       render: (value) => formatDate(value),
-    },
-    {
-      key: 'medicines',
-      header: 'Medicines Count',
-      align: 'center',
-      render: (value) => value?.length ?? 0,
-    },
-    {
-      key: 'priority',
-      header: 'Priority',
-      render: (value) => <Badge variant={PRIORITY_BADGE[value]}>{value}</Badge>,
     },
     {
       key: 'status',
@@ -75,8 +62,8 @@ function createColumns(searchQuery, searchBy, onView, onApprove, onReject) {
     },
     {
       key: 'actions',
-      header: 'Actions',
-      align: 'center',
+      header: '',
+      align: 'right',
       render: (_, row) => {
         const isPending = row.status === PRESCRIPTION_STATUS.PENDING;
 
@@ -126,7 +113,6 @@ function PrescriptionTable({
       className="rx-table"
       columns={columns}
       data={data}
-      striped
       hoverable
       stickyHeader
       emptyTitle="No prescriptions found"

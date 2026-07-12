@@ -112,8 +112,8 @@ function PrescriptionVerification() {
   return (
     <div className="rx-page">
       <PageHeader
-        title="Prescription Verification"
-        subtitle="Review and verify customer prescriptions before dispensing medicines."
+        title="Prescriptions"
+        subtitle="Review and verify before dispensing."
       />
 
       <PrescriptionSummaryCards summary={summary} />

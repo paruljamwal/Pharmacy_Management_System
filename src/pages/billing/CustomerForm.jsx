@@ -1,14 +1,14 @@
-import { Card, Input } from '../../components/common';
+import { Input } from '../../components/common';
 import './CustomerForm.css';
 
 function CustomerForm({ customerName, mobileNumber, onChange }) {
   return (
-    <Card className="billing-customer" title="Customer Information">
+    <div className="billing-customer">
       <div className="billing-customer__grid">
         <Input
           label="Customer Name"
           name="customerName"
-          placeholder="Enter customer name"
+          placeholder="Customer name"
           value={customerName}
           onChange={(event) => onChange('customerName', event.target.value)}
         />
@@ -16,12 +16,12 @@ function CustomerForm({ customerName, mobileNumber, onChange }) {
           label="Mobile Number"
           name="mobileNumber"
           type="tel"
-          placeholder="Enter mobile number"
+          placeholder="Mobile number"
           value={mobileNumber}
           onChange={(event) => onChange('mobileNumber', event.target.value)}
         />
       </div>
-    </Card>
+    </div>
   );
 }
 

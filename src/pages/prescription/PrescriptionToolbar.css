@@ -1,19 +1,15 @@
 .rx-toolbar {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--space-lg);
+  gap: var(--space-md);
   margin-bottom: var(--space-lg);
-  padding: var(--space-lg);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
 }
 
 .rx-toolbar__filters {
   display: grid;
-  grid-template-columns: minmax(180px, 1.4fr) repeat(4, minmax(130px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: minmax(180px, 1.4fr) repeat(4, minmax(120px, 1fr));
+  gap: var(--space-sm);
   flex: 1;
   min-width: 0;
 }
@@ -24,12 +20,10 @@
 }
 
 .rx-toolbar__actions {
-  display: flex;
-  align-items: center;
   flex-shrink: 0;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1200px) {
   .rx-toolbar {
     flex-direction: column;
     align-items: stretch;
@@ -42,18 +36,10 @@
   .rx-toolbar__search {
     grid-column: 1 / -1;
   }
-
-  .rx-toolbar__actions {
-    justify-content: flex-end;
-  }
 }
 
 @media (max-width: 640px) {
   .rx-toolbar__filters {
     grid-template-columns: 1fr;
-  }
-
-  .rx-toolbar__actions .ui-btn {
-    width: 100%;
   }
 }
