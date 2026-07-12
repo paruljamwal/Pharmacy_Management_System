@@ -54,9 +54,6 @@ npm run preview
 
 ## Screenshots
 
-> Drop your screenshots into `docs/screenshots/` using the filenames below.  
-> Until then, placeholders are listed so the README structure is ready.
-
 | Screen | Preview |
 |--------|---------|
 | Dashboard | ![Dashboard](docs/screenshots/01-dashboard.png) |
@@ -65,19 +62,13 @@ npm run preview
 | Billing | ![Billing](docs/screenshots/04-billing.png) |
 | Sales Report | ![Sales](docs/screenshots/05-sales.png) |
 
-### Optional detail shots
+### Detail shots
 
 | Screen | Preview |
 |--------|---------|
-| Inventory — stock alerts / filters | ![Inventory filters](docs/screenshots/02b-inventory-filters.png) |
+| Inventory — filters | ![Inventory filters](docs/screenshots/02b-inventory-filters.png) |
 | Prescription — detail drawer | ![Prescription drawer](docs/screenshots/03b-prescription-drawer.png) |
-| Billing — invoice modal | ![Invoice](docs/screenshots/04b-invoice-modal.png) |
-
-**How to add screenshots**
-
-1. Capture each page (full width, light theme).
-2. Save PNGs into `docs/screenshots/` with the names above.
-3. Refresh GitHub — images will render automatically.
+| Billing — cart / summary | ![Billing summary](docs/screenshots/04b-billing-summary.png) |
 
 ---
 
