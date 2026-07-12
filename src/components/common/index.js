@@ -8,3 +8,4 @@ export { default as Table } from './Table';
 export { default as EmptyState } from './EmptyState';
 export { default as Skeleton } from './Skeleton';
 export { default as HighlightText } from './HighlightText';
+export { default as AlertCard } from './AlertCard';

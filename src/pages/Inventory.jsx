@@ -2,11 +2,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { PageHeader } from '../components/layout';
 import { medicines } from '../data/medicines';
 import useDebounce from '../hooks/useDebounce';
+import { STOCK_ALERT_FILTERS, STOCK_ALERT_TYPES } from '../constants/inventory';
 import {
   filterMedicines,
   getInventorySummary,
+  getStockAlerts,
   paginateItems,
 } from '../utils/inventory';
+import InventoryStockAlerts from './inventory/InventoryStockAlerts';
 import InventorySummaryCards from './inventory/InventorySummaryCards';
 import InventoryToolbar from './inventory/InventoryToolbar';
 import InventoryTable from './inventory/InventoryTable';
@@ -20,6 +23,19 @@ const INITIAL_FILTERS = {
   expiry: 'all',
 };
 
+function getActiveAlert(filters) {
+  return (
+    Object.values(STOCK_ALERT_TYPES).find((alertKey) => {
+      const alertFilters = STOCK_ALERT_FILTERS[alertKey];
+      return (
+        filters.stockStatus === alertFilters.stockStatus &&
+        filters.expiry === alertFilters.expiry &&
+        filters.category === alertFilters.category
+      );
+    }) ?? null
+  );
+}
+
 function Inventory() {
   const [searchInput, setSearchInput] = useState('');
   const [filters, setFilters] = useState(INITIAL_FILTERS);
@@ -29,6 +45,8 @@ function Inventory() {
   const debouncedSearch = useDebounce(searchInput, 300);
 
   const summary = useMemo(() => getInventorySummary(medicines), []);
+  const stockAlerts = useMemo(() => getStockAlerts(medicines), []);
+  const activeAlert = useMemo(() => getActiveAlert(filters), [filters]);
 
   const filteredMedicines = useMemo(
     () =>
@@ -60,6 +78,11 @@ function Inventory() {
     setFilters((current) => ({ ...current, [key]: value }));
   };
 
+  const handleAlertClick = (alertKey) => {
+    setSearchInput('');
+    setFilters(STOCK_ALERT_FILTERS[alertKey]);
+  };
+
   const handleReset = () => {
     setSearchInput('');
     setFilters(INITIAL_FILTERS);
@@ -76,6 +99,12 @@ function Inventory() {
       <PageHeader
         title="Medicine Inventory"
         subtitle="Manage medicines, monitor stock levels and search products."
+      />
+
+      <InventoryStockAlerts
+        alerts={stockAlerts}
+        activeAlert={activeAlert}
+        onAlertClick={handleAlertClick}
       />
 
       <InventorySummaryCards summary={summary} />

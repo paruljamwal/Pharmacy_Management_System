@@ -43,6 +43,40 @@ export const EXPIRY_OPTIONS = [
   { value: 'expired', label: 'Expired' },
 ];
 
+export const STOCK_ALERT_TYPES = {
+  LOW_STOCK: 'lowStock',
+  OUT_OF_STOCK: 'outOfStock',
+  EXPIRED: 'expired',
+  EXPIRING_SOON: 'expiringSoon',
+};
+
+export const STOCK_ALERT_FILTERS = {
+  [STOCK_ALERT_TYPES.LOW_STOCK]: {
+    searchBy: 'medicineName',
+    category: 'all',
+    stockStatus: STOCK_STATUS.LOW_STOCK,
+    expiry: 'all',
+  },
+  [STOCK_ALERT_TYPES.OUT_OF_STOCK]: {
+    searchBy: 'medicineName',
+    category: 'all',
+    stockStatus: STOCK_STATUS.OUT_OF_STOCK,
+    expiry: 'all',
+  },
+  [STOCK_ALERT_TYPES.EXPIRED]: {
+    searchBy: 'medicineName',
+    category: 'all',
+    stockStatus: 'all',
+    expiry: 'expired',
+  },
+  [STOCK_ALERT_TYPES.EXPIRING_SOON]: {
+    searchBy: 'medicineName',
+    category: 'all',
+    stockStatus: 'all',
+    expiry: 'expiringSoon',
+  },
+};
+
 export const ROWS_PER_PAGE_OPTIONS = [
   { value: '10', label: '10' },
   { value: '20', label: '20' },

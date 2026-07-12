@@ -57,6 +57,20 @@ export function getInventorySummary(items) {
   };
 }
 
+export function getStockAlerts(items) {
+  return {
+    lowStock: items.filter((item) => item.stockStatus === 'Low Stock').length,
+    outOfStock: items.filter((item) => item.stockStatus === 'Out Of Stock').length,
+    expired: items.filter((item) => isExpired(item.expiryDate)).length,
+    expiringSoon: items.filter((item) => isExpiringSoon(item.expiryDate)).length,
+  };
+}
+
+export function formatMedicineAlertTitle(count, phrase) {
+  const noun = count === 1 ? 'Medicine' : 'Medicines';
+  return `${count} ${noun} ${phrase}`;
+}
+
 export function filterMedicines(
   items,
   { search = '', searchBy = 'medicineName', category = 'all', stockStatus = 'all', expiry = 'all' },
