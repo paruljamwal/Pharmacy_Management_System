@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { HiOutlinePlus } from 'react-icons/hi2';
 import { Button, SearchInput, Select, Table } from '../../components/common';
 import { SEARCH_BY_OPTIONS } from '../../constants/billing';
 import { filterBillingMedicines, formatCurrency } from '../../utils/billing';
@@ -69,6 +70,7 @@ function MedicinePicker({ medicines, onAdd }) {
         <Button
           variant="ghost"
           disabled={row.stock <= 0}
+          icon={<HiOutlinePlus size={16} />}
           onClick={() => onAdd(row, quantities[row.id] ?? 1)}
         >
           Add

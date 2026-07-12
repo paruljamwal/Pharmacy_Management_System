@@ -1,12 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import { HiOutlineBars3, HiOutlineMagnifyingGlass } from 'react-icons/hi2';
+import { HiOutlineBars3 } from 'react-icons/hi2';
 import { NAV_ITEMS } from '../../constants';
 import './Navbar.css';
-
-const SEARCH_SHORTCUT =
-  typeof navigator !== 'undefined' && /Mac|iPhone|iPad/i.test(navigator.platform)
-    ? '⌘K'
-    : 'Ctrl K';
 
 function Navbar({ onMenuClick }) {
   const { pathname } = useLocation();
@@ -29,18 +24,6 @@ function Navbar({ onMenuClick }) {
           <span className="navbar__context-divider" aria-hidden="true" />
           <h1 className="navbar__page">{currentPage}</h1>
         </div>
-      </div>
-
-      <div className="navbar__search" title="Search coming soon">
-        <HiOutlineMagnifyingGlass size={16} className="navbar__search-icon" />
-        <input
-          type="search"
-          className="navbar__search-input"
-          placeholder="Search"
-          aria-label="Global search"
-          disabled
-        />
-        <kbd className="navbar__search-kbd">{SEARCH_SHORTCUT}</kbd>
       </div>
 
       <button type="button" className="navbar__profile" aria-label="User menu">
