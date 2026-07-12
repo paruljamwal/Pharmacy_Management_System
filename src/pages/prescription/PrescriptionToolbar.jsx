@@ -3,6 +3,7 @@ import {
   SEARCH_BY_OPTIONS,
   STATUS_FILTER_OPTIONS,
   PRIORITY_FILTER_OPTIONS,
+  DATE_FILTER_OPTIONS,
 } from '../../constants/prescriptions';
 import './PrescriptionToolbar.css';
 
@@ -11,10 +12,12 @@ function PrescriptionToolbar({
   searchBy,
   status,
   priority,
+  date,
   onSearchChange,
   onSearchByChange,
   onStatusChange,
   onPriorityChange,
+  onDateChange,
   onReset,
 }) {
   return (
@@ -54,6 +57,15 @@ function PrescriptionToolbar({
           options={PRIORITY_FILTER_OPTIONS}
           value={priority}
           onChange={(event) => onPriorityChange(event.target.value)}
+        />
+
+        <Select
+          className="rx-toolbar__field"
+          aria-label="Prescription date"
+          placeholder=""
+          options={DATE_FILTER_OPTIONS}
+          value={date}
+          onChange={(event) => onDateChange(event.target.value)}
         />
       </div>
 

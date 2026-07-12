@@ -1,4 +1,5 @@
-import { Badge, Table } from '../../components/common';
+import { useMemo } from 'react';
+import { Badge, HighlightText, Table } from '../../components/common';
 import {
   PRIORITY_BADGE,
   PRESCRIPTION_STATUS,
@@ -27,11 +28,30 @@ function ActionButton({ label, onClick, disabled = false, tone = 'default', chil
   );
 }
 
-function PrescriptionTable({ data, onView, onApprove, onReject }) {
-  const columns = [
-    { key: 'prescriptionId', header: 'Prescription ID' },
-    { key: 'patientName', header: 'Patient Name' },
-    { key: 'doctorName', header: 'Doctor' },
+function createColumns(searchQuery, searchBy, onView, onApprove, onReject) {
+  const renderSearchable = (key) => (value) =>
+    searchBy === key && searchQuery.trim() ? (
+      <HighlightText text={value} query={searchQuery} />
+    ) : (
+      value
+    );
+
+  return [
+    {
+      key: 'prescriptionId',
+      header: 'Prescription ID',
+      render: renderSearchable('prescriptionId'),
+    },
+    {
+      key: 'patientName',
+      header: 'Patient Name',
+      render: renderSearchable('patientName'),
+    },
+    {
+      key: 'doctorName',
+      header: 'Doctor',
+      render: renderSearchable('doctorName'),
+    },
     {
       key: 'date',
       header: 'Prescription Date',
@@ -86,6 +106,20 @@ function PrescriptionTable({ data, onView, onApprove, onReject }) {
       },
     },
   ];
+}
+
+function PrescriptionTable({
+  data,
+  searchQuery = '',
+  searchBy = 'prescriptionId',
+  onView,
+  onApprove,
+  onReject,
+}) {
+  const columns = useMemo(
+    () => createColumns(searchQuery, searchBy, onView, onApprove, onReject),
+    [searchQuery, searchBy, onView, onApprove, onReject],
+  );
 
   return (
     <Table

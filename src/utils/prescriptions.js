@@ -19,7 +19,13 @@ export function paginateItems(items, page, rowsPerPage) {
 
 export function filterPrescriptions(
   items,
-  { search = '', searchBy = 'prescriptionId', status = 'all', priority = 'all' },
+  {
+    search = '',
+    searchBy = 'prescriptionId',
+    status = 'all',
+    priority = 'all',
+    date = 'all',
+  },
 ) {
   const query = search.trim().toLowerCase();
 
@@ -28,7 +34,8 @@ export function filterPrescriptions(
       !query || String(item[searchBy] ?? '').toLowerCase().includes(query);
     const matchesStatus = status === 'all' || item.status === status;
     const matchesPriority = priority === 'all' || item.priority === priority;
-    return matchesSearch && matchesStatus && matchesPriority;
+    const matchesDate = date === 'all' || item.date === date;
+    return matchesSearch && matchesStatus && matchesPriority && matchesDate;
   });
 }
 

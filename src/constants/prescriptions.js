@@ -9,6 +9,8 @@ export const PRESCRIPTION_PRIORITY = {
   URGENT: 'Urgent',
 };
 
+export const TODAY_DATE = '2026-07-12';
+
 export const STATUS_BADGE = {
   [PRESCRIPTION_STATUS.PENDING]: 'warning',
   [PRESCRIPTION_STATUS.APPROVED]: 'success',
@@ -39,10 +41,18 @@ export const PRIORITY_FILTER_OPTIONS = [
   { value: PRESCRIPTION_PRIORITY.URGENT, label: PRESCRIPTION_PRIORITY.URGENT },
 ];
 
+export const DATE_FILTER_OPTIONS = [
+  { value: 'all', label: 'All Dates' },
+  { value: TODAY_DATE, label: 'Today' },
+  { value: '2026-07-11', label: '11 Jul 2026' },
+  { value: '2026-07-10', label: '10 Jul 2026' },
+  { value: '2026-07-09', label: '09 Jul 2026' },
+  { value: '2026-07-08', label: '08 Jul 2026' },
+  { value: '2026-07-07', label: '07 Jul 2026' },
+];
+
 export const ROWS_PER_PAGE_OPTIONS = [
   { value: '10', label: '10' },
   { value: '20', label: '20' },
   { value: '50', label: '50' },
 ];
-
-export const TODAY_DATE = '2026-07-12';

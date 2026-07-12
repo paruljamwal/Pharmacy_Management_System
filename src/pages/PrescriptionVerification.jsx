@@ -21,6 +21,7 @@ const INITIAL_FILTERS = {
   searchBy: 'prescriptionId',
   status: 'all',
   priority: 'all',
+  date: 'all',
 };
 
 function PrescriptionVerification() {
@@ -122,15 +123,19 @@ function PrescriptionVerification() {
         searchBy={filters.searchBy}
         status={filters.status}
         priority={filters.priority}
+        date={filters.date}
         onSearchChange={setSearchInput}
         onSearchByChange={(value) => updateFilter('searchBy', value)}
         onStatusChange={(value) => updateFilter('status', value)}
         onPriorityChange={(value) => updateFilter('priority', value)}
+        onDateChange={(value) => updateFilter('date', value)}
         onReset={handleReset}
       />
 
       <PrescriptionTable
         data={paginatedItems}
+        searchQuery={debouncedSearch}
+        searchBy={filters.searchBy}
         onView={(row) => openAction(row, 'view')}
         onApprove={(row) => openAction(row, 'approve')}
         onReject={(row) => openAction(row, 'reject')}
