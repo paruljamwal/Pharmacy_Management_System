@@ -122,9 +122,9 @@
   color: var(--color-text-muted);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .navbar {
-    padding: 0 16px;
+    padding: 0 12px;
   }
 
   .navbar__menu {
@@ -144,5 +144,9 @@
 
   .navbar__profile {
     padding: 2px;
+  }
+
+  .navbar__page {
+    font-size: 0.8125rem;
   }
 }

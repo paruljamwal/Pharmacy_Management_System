@@ -32,4 +32,8 @@
   .sales-toolbar__filters {
     grid-template-columns: 1fr;
   }
+
+  .sales-toolbar__actions .ui-btn {
+    width: 100%;
+  }
 }

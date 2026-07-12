@@ -25,7 +25,17 @@
     grid-template-columns: 1fr;
   }
 
+  .billing-page__right {
+    order: 2;
+  }
+
   .billing-summary {
     position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .billing-page__grid {
+    gap: 16px;
   }
 }

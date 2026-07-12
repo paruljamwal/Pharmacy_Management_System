@@ -44,4 +44,8 @@
   .inventory-toolbar__filters {
     grid-template-columns: 1fr;
   }
+
+  .inventory-toolbar__actions .ui-btn {
+    width: 100%;
+  }
 }

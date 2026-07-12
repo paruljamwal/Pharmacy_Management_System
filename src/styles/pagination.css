@@ -90,11 +90,36 @@
   .sales-pagination {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
 
   .inventory-pagination__controls,
   .rx-pagination__controls,
   .sales-pagination__controls {
     justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .inventory-pagination__meta,
+  .rx-pagination__meta,
+  .sales-pagination__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .inventory-pagination__controls .ui-btn,
+  .rx-pagination__controls .ui-btn,
+  .sales-pagination__controls .ui-btn {
+    flex: 1;
+  }
+
+  .inventory-pagination__pages,
+  .rx-pagination__pages {
+    width: 100%;
+    justify-content: center;
+    order: 3;
   }
 }

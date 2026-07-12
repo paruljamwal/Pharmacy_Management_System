@@ -7,6 +7,12 @@
 
 .billing-picker__table {
   max-height: 440px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.billing-picker__table .ui-table {
+  min-width: 480px;
 }
 
 .billing-medicine {
@@ -46,5 +52,9 @@
 @media (max-width: 640px) {
   .billing-picker__toolbar {
     grid-template-columns: 1fr;
+  }
+
+  .billing-picker__table {
+    max-height: 360px;
   }
 }

@@ -42,6 +42,10 @@
 }
 
 @media (max-width: 640px) {
+  .billing-invoice-dialog {
+    width: 100%;
+  }
+
   .billing-invoice__meta {
     grid-template-columns: 1fr;
   }

@@ -1,0 +1,52 @@
+/* Shared mobile safety */
+html,
+body,
+#root {
+  overflow-x: hidden;
+}
+
+.app-layout,
+.app-layout__main,
+.app-layout__content,
+.app-layout__page {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .app-layout__content {
+    padding: 16px 12px 28px;
+  }
+
+  .ui-page-header {
+    margin-bottom: 16px;
+  }
+
+  .ui-page-header__title {
+    font-size: 1.4rem;
+  }
+
+  .ui-page-header__subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .metric-strip {
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .metric-strip__item {
+    min-height: 64px;
+    padding: 12px;
+  }
+
+  .metric-strip__value {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .metric-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+}

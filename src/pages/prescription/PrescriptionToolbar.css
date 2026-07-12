@@ -42,4 +42,8 @@
   .rx-toolbar__filters {
     grid-template-columns: 1fr;
   }
+
+  .rx-toolbar__actions .ui-btn {
+    width: 100%;
+  }
 }
