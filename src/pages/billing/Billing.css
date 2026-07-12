@@ -1,0 +1,31 @@
+.billing-page {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.billing-page .ui-page-header {
+  margin-bottom: var(--space-lg);
+}
+
+.billing-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 65fr) minmax(260px, 35fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.billing-page__left,
+.billing-page__right {
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .billing-page__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .billing-summary {
+    position: static;
+  }
+}

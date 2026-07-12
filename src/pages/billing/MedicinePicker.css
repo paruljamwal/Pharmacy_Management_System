@@ -1,0 +1,55 @@
+.billing-picker .ui-card__header,
+.billing-picker .ui-card__body {
+  padding: var(--space-lg);
+}
+
+.billing-picker__toolbar {
+  display: grid;
+  grid-template-columns: 1fr minmax(140px, 180px);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.billing-picker__table {
+  max-height: 420px;
+}
+
+.billing-medicine {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.billing-medicine__name {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.billing-medicine__code {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.billing-qty {
+  width: 64px;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background: var(--color-card);
+}
+
+.billing-qty:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+@media (max-width: 640px) {
+  .billing-picker__toolbar {
+    grid-template-columns: 1fr;
+  }
+}
